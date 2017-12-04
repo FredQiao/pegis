@@ -114,3 +114,7 @@
 /*.iml
 /service/*.iml
 /web/*.iml
+/service/target/classes/com/fred/multi/form/UserForm.class
+/web/target/classes/application.properties
+/dao/target/classes/com/fred/multi/domain/*.class
+/.idea

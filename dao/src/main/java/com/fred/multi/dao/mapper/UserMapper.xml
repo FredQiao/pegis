@@ -3,13 +3,25 @@
 <mapper namespace="com.fred.multi.dao.UserMapper" >
     <resultMap id="BaseResultMap" type="com.fred.multi.domain.User" >
         <id column="id" property="id" jdbcType="VARCHAR" />
-        <result column="name" property="name" jdbcType="VARCHAR" />
-        <result column="age" property="age" jdbcType="VARCHAR" />
+        <result property="username" column="username"/>
+        <result property="password" column="PASSWORD"/>
+        <collection property="roles" ofType="com.fred.multi.domain.Role">
+            <result column="name" property="name"/>
+        </collection>
     </resultMap>
 
     <select id="listUsers" resultMap="BaseResultMap" >
         select
-        id, name, age
-        from user
+        id, username, password
+        from sys_user
+    </select>
+
+    <select id="findByUserName" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select u.*
+        ,r.name
+        from sys_user u
+        LEFT JOIN sys_role_user sru on u.id= sru.Sys_User_id
+        LEFT JOIN sys_role r on sru.sys_role_id=r.id
+        where username= #{username}
     </select>
 </mapper>
