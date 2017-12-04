@@ -1,0 +1,1 @@
+数据库链接放在service端，server端口通过setProperty的方式配置
